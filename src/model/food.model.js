@@ -2,14 +2,20 @@ const db = require("../config/db");
 
 const foodModel = {
   // User list
-  selectAll: () => {
+  selectAll: (limit, offset) => {
     return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM tb_recipe ORDER BY title ASC", (err, res) => {
-        if (err) {
-          reject(err);
+      db.query(
+        `
+        SELECT * FROM tb_recipe ORDER BY title LIMIT ${limit} OFFSET ${offset}
+        `,
+        (err, res) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(res);
+          }
         }
-        resolve(res);
-      });
+      );
     });
   },
   // router - detail

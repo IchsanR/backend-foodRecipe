@@ -4,7 +4,7 @@ const userModel = {
   // User list
   selectAll: () => {
     return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM tb_users ORDER BY users_name ASC", (err, res) => {
+      db.query("SELECT * FROM tb_users ORDER BY id ASC", (err, res) => {
         if (err) {
           reject(err);
         }
@@ -78,19 +78,6 @@ const userModel = {
           } else {
             resolve(result);
           }
-        }
-      );
-    });
-  },
-  searching: (users_name) => {
-    return new Promise((resolve, reject) => {
-      db.query(
-        `SELECT * FROM tb_users WHERE users_name ILIKE '%${users_name}%' ORDER BY users_name ASC`,
-        (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(res);
         }
       );
     });

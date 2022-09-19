@@ -3,8 +3,11 @@ const foodModel = require("../model/food.model");
 const foodController = {
   // method
   list: (req, res) => {
+    const limit = parseInt(req.query.limit) || 2;
+    const page = parseInt(req.query.page) || 1;
+    const offset = (page - 1) * limit;
     foodModel
-      .selectAll()
+      .selectAll(limit, offset)
       .then((results) => {
         res.json(results.rows);
       })

@@ -58,17 +58,6 @@ const userController = {
         res.json(err);
       });
   },
-  searching: (req, res) => {
-    const users_name = req.params.users_name;
-    userModel
-      .searching(users_name)
-      .then((results) => {
-        res.json(results.rows);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  },
 };
 
 module.exports = userController;
